@@ -65,7 +65,7 @@ app.whenReady().then(() => {
 
   // 监听应用程序失去焦点事件
   app.on('browser-window-blur', () => {
-    presenter.shortcutPresenter.unregisterShortcuts()
+    // presenter.shortcutPresenter.unregisterShortcuts()
   })
 })
 
