@@ -1,5 +1,5 @@
 // 聚焦浏览器 实现复制功能
-import { app, globalShortcut } from 'electron'
+import { app, globalShortcut,clipboard } from 'electron'
 import { WindowPresenter } from './windowPresenter'
 import { ConfigPresenter } from './configPresenter'
 import * as process from 'node:process'
@@ -16,6 +16,8 @@ export class ShortcutPresenter {
     console.log('ShortcutPresenter constructor', this.configPresenter)
   }
 
+  
+
   registerShortcuts(): void {
     if (this.isActive) return
 
@@ -28,6 +30,8 @@ export class ShortcutPresenter {
         }
       }
     )
+    let someVariable = 0;
+
 
     let lastKeyPressTime = 0;
     const gap = 1000;
@@ -52,6 +56,10 @@ export class ShortcutPresenter {
           // 检查 windowPresenter 和 mainWindow 是否存在，且确保 mainWindow 没有聚焦
           if (this.windowPresenter && this.windowPresenter.mainWindow && !this  .windowPresenter.mainWindow.isFocused()) {
             this.windowPresenter.show();  // 唤醒软件
+            someVariable++;
+            const text = clipboard.readText()
+            console.log(text)
+            this.windowPresenter.mainWindow?.webContents.send('variable-changed', text)
             console.log('唤醒软件');
           }
         }

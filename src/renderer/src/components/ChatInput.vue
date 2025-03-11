@@ -204,6 +204,8 @@ import { approximateTokenSize } from 'tokenx'
 import { useSettingsStore } from '@/stores/settings'
 
 const { t } = useI18n()
+const { ipcRenderer } = window.electron
+
 const configPresenter = usePresenter('configPresenter')
 const chatStore = useChatStore()
 const settingsStore = useSettingsStore()
@@ -427,6 +429,12 @@ const handleSearchMouseLeave = () => {
 
 onMounted(() => {
   initSettings()
+
+  ipcRenderer?.on('variable-changed',  (_, msg) => {
+    console.log("variable-changed....:",msg)
+    // inputText.value = msg    
+    inputText.value = msg
+  })
 
   // Add event listeners for search engine selector hover
   const searchElement = document.querySelector('.search-engine-select')
