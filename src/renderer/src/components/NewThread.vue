@@ -17,7 +17,7 @@
     </div>
     <div class="h-0 w-full flex-grow flex flex-col items-center justify-center">
       <img src="@/assets/logo-dark.png" class="w-24 h-24" />
-      <h1 class="text-2xl font-bold px-8 pt-4">{{ t('newThread.greeting') }}111</h1>
+      <h1 class="text-2xl font-bold px-8 pt-4">{{ t('newThread.greeting') }}</h1>
       <h3 class="text-lg text-muted-foreground px-8 pb-2">{{ t('newThread.prompt') }}</h3>
       <div class="h-12"></div>
       <ChatInput
@@ -252,11 +252,17 @@ const handleModelUpdate = (model: MODEL_META, providerId: string) => {
   modelSelectOpen.value = false
 }
 
+const translator_prompt_template = `你是一名翻译专家。如果输入的是{{lang1}}，你就翻译成{{lang2}}。如果输入不是{{lang1}}，你就翻译成{{lang1}}`
+
 const handleSend = async (content: UserMessageContent) => {
+  let lang1= await configPresenter.getLangFirst()
+  let lang2= await configPresenter.getLangSecond()
+  let prompt = translator_prompt_template.replaceAll("{{lang1}}",lang1).replaceAll("{{lang2}}",lang2)
+  console.log('prompt', prompt,lang1,lang2)
   const threadId = await chatStore.createThread(content.text, {
     providerId: activeModel.value.providerId,
     modelId: activeModel.value.id,
-    systemPrompt: systemPrompt.value,
+    systemPrompt: prompt,
     temperature: temperature.value,
     contextLength: contextLength.value,
     maxTokens: maxTokens.value,

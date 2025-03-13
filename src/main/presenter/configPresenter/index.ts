@@ -24,6 +24,8 @@ interface IAppSettings {
   appVersion?: string // 用于版本检查和数据迁移
   proxyMode?: string // 代理模式：system, none, custom
   customProxyUrl?: string // 自定义代理地址
+  langFirst?: string
+  langSecond?: string
   [key: string]: unknown // 允许任意键，使用unknown类型替代any
 }
 
@@ -44,6 +46,8 @@ const defaultProviders = DEFAULT_PROVIDERS.map((provider) => ({
 
 // 定义 storeKey 常量
 const PROVIDERS_STORE_KEY = 'providers'
+const LANGFirst_KEY = 'langFirst'
+const LANGSecond_KEY = 'langSecond'
 
 const PROVIDER_MODELS_DIR = 'provider_models'
 // 模型状态键前缀
@@ -186,6 +190,22 @@ export class ConfigPresenter implements IConfigPresenter {
     } catch (error) {
       console.error(`[Config] Failed to set setting ${key}:`, error)
     }
+  }
+
+  getLangFirst(): string{
+    return this.getSetting(LANGFirst_KEY)
+  }
+
+  setLangFirst(value: string): void{
+    this.setSetting(LANGFirst_KEY, value)
+  }
+
+  getLangSecond(): string{
+    return this.getSetting(LANGSecond_KEY)
+  }
+
+  setLangSecond(value: string): void{
+    this.setSetting(LANGSecond_KEY, value)
   }
 
   getProviders(): LLM_PROVIDER[] {

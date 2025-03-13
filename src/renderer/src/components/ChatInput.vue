@@ -434,6 +434,12 @@ onMounted(() => {
     console.log("variable-changed....:",msg)
     // inputText.value = msg    
     inputText.value = msg
+    configPresenter.setLangFirst("中文")
+    configPresenter.setLangSecond("英文")
+    configPresenter.getLangSecond().then((msg)=>{
+        console.log('msg:',msg)
+    })
+    
   })
 
   // Add event listeners for search engine selector hover

@@ -138,6 +138,11 @@ export interface IConfigPresenter {
   // 语言设置
   getLanguage(): string
   getDefaultProviders(): LLM_PROVIDER[]
+  getLangFirst(): string
+  setLangFirst(value: string): void
+  getLangSecond(): string
+  setLangSecond(value: string): void
+  
   // 代理设置
   getProxyMode(): string
   setProxyMode(mode: string): void
