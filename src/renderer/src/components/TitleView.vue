@@ -1,4 +1,8 @@
 <template>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8c03e695320ac7131bc7164853af47da1dc167e2
   <div class="flex items-center justify-between w-full p-2">
     <div class="flex flex-row gap-2 items-center">
       <Button
@@ -75,6 +79,10 @@ import { MODEL_META } from '@shared/presenter'
 import { ref, watch } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { useChatStore } from '@/stores/chat'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8c03e695320ac7131bc7164853af47da1dc167e2
 
 const { t } = useI18n()
 const chatStore = useChatStore()
