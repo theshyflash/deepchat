@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <Selects/>
+  </div>
   <div class="h-full w-full flex flex-col items-center justify-start">
     <div class="w-full p-2 flex flex-row gap-2 items-center">
       <Button
@@ -106,6 +109,7 @@ import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
 import { UserMessageContent } from '@shared/chat'
 import ChatConfig from './ChatConfig.vue'
 import { usePresenter } from '@/composables/usePresenter'
+import Selects from './ui/select/Selects.vue'
 const configPresenter = usePresenter('configPresenter')
 const { t } = useI18n()
 

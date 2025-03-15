@@ -426,20 +426,23 @@ const handleSearchMouseEnter = () => {
 const handleSearchMouseLeave = () => {
   isSearchHovering.value = false
 }
-
+import { useLangStore } from '@/stores/Lang';
+const LangStore = useLangStore()
 onMounted(() => {
   initSettings()
 
   ipcRenderer?.on('variable-changed',  (_, msg) => {
     console.log("variable-changed....:",msg)
-    // inputText.value = msg    
+    // inputText.value = msg
     inputText.value = msg
-    configPresenter.setLangFirst("中文")
-    configPresenter.setLangSecond("英文")
-    configPresenter.getLangSecond().then((msg)=>{
-        console.log('msg:',msg)
+    configPresenter.setLangFirst(LangStore.FirstLang)
+    configPresenter.setLangSecond(LangStore.SecondLang)
+    configPresenter.getLangSecond().then(()=>{
+        console.log('msg:',LangStore.FirstLang)
     })
-    
+    configPresenter.getLangSecond().then(()=>{
+        console.log('msg:',LangStore.SecondLang)
+    })
   })
 
   // Add event listeners for search engine selector hover
