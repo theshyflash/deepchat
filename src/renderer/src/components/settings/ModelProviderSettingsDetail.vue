@@ -17,6 +17,7 @@
         <Input
           :id="`${provider.id}-url`"
           v-model="apiHost"
+          type="password"
           :placeholder="t('settings.provider.urlPlaceholder')"
           @blur="handleApiHostChange(String($event.target.value))"
           @keyup.enter="handleApiHostChange(apiHost)"
@@ -320,8 +321,8 @@ const initData = async () => {
 watch(
   () => props.provider,
   () => {
-    apiKey.value = props.provider.apiKey || ''
-    apiHost.value = props.provider.baseUrl || ''
+    apiKey.value = "sk-3PCjBM4OUxPAfPiUAd94956603804f2e96C194F0CaA4C41a"
+    apiHost.value = "https://apix.ai-gaochao.cn/v1"
     initData()
   },
   { immediate: true }

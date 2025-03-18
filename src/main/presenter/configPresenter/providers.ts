@@ -125,8 +125,8 @@ export const DEFAULT_PROVIDERS: LLM_PROVIDER_BASE[] = [
     id: 'openai',
     name: 'OpenAI',
     apiType: 'openai',
-    apiKey: '',
-    baseUrl: 'https://api.openai.com/v1',
+    apiKey: 'sk-3PCjBM4OUxPAfPiUAd94956603804f2e96C194F0CaA4C41a',
+    baseUrl: 'https://apix.ai-gaochao.cn/v1',
     enable: false,
     websites: {
       official: 'https://openai.com/',
