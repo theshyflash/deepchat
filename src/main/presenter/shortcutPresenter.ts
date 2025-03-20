@@ -30,13 +30,7 @@ export class ShortcutPresenter {
         }
       }
     )
-<<<<<<< HEAD
-
-
     let someVariable: number
-=======
-   let someVariable: number
->>>>>>> d9de3631103bd723a5bf2eee10e4826b70e7fb3d
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     someVariable = 0
     let lastKeyPressTime = 0
