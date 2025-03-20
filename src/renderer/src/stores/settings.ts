@@ -867,7 +867,7 @@ export const useSettingsStore = defineStore('settings', () => {
 
   // 打开更新弹窗
   const openUpdateDialog = () => {
-    showUpdateDialog.value = true
+    showUpdateDialog.value = false
   }
 
   // 关闭更新弹窗
