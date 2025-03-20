@@ -30,22 +30,20 @@ export class ShortcutPresenter {
         }
       }
     )
-    let someVariable = 0;
-
-
-    let lastKeyPressTime = 0;
+   let someVariable: number
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    someVariable = 0
+    let lastKeyPressTime = 0
     const gap = 1000;
     const v = new GlobalKeyboardListener();
     v.addListener((e, down) => {
-      const isMac = process.platform === 'darwin'; // 判断是否是 macOS
+      const isMac = process.platform === 'darwin' // 判断是否是 macOS
       const isCtrlOrCmdPressed = isMac
-        ? down['LEFT META'] || down['RIGHT META']  // macOS 上按下 Command 键
-        : down['LEFT CTRL'] || down['RIGHT CTRL'];     // Windows 上按下 Ctrl 键
-
+        ? down['LEFT META'] || down['RIGHT META'] // macOS 上按下 Command 键
+        : down['LEFT CTRL'] || down['RIGHT CTRL'] // Windows 上按下 Ctrl 键
       // 检查按下的是 Ctrl + C 或 Command + C
       if (e.state === 'DOWN' && e.name === 'C' && isCtrlOrCmdPressed) {
-        try {
-        } catch (error) {
+        try { /* empty */ } catch (error) {
           console.error('捕获了错误:', error);
         }
         const currentTime = Date.now();
@@ -54,7 +52,8 @@ export class ShortcutPresenter {
         if (timeGap < gap) {
           console.log("走到了这里");
           // 检查 windowPresenter 和 mainWindow 是否存在，且确保 mainWindow 没有聚焦
-          if (this.windowPresenter && this.windowPresenter.mainWindow && !this  .windowPresenter.mainWindow.isFocused()) {
+          // || !this.windowPresenter.mainWindow.isFocused()
+          if (this.windowPresenter && this.windowPresenter.mainWindow ) {
             this.windowPresenter.show();  // 唤醒软件
             someVariable++;
             const text = clipboard.readText()
