@@ -3,23 +3,8 @@ import { ref, watch } from 'vue';
 import { useLangStore } from '@/stores/Lang';
 const LangStore = useLangStore()
 // 定义左侧和右侧的选项
-const leftOptions = ref([
-  '中文', // 中文
-  '日语', // 日语
-  '英语', // 英语
-  '韩语', // 韩语
-  '法语', // 法语
-  '意大利语', // 意大利语
-  '西班牙语', // 西班牙语
-  '德语', // 德语
-  '葡萄牙语', // 葡萄牙语mm
-  '俄语', // 俄语
-  '阿拉伯语', // 阿拉伯语
-
-]);
-
-const rightOptions = ref(leftOptions.value); // 右侧选项与左侧一致
-
+const leftOptions = ref(['中文', '日语', '英语']);
+const rightOptions = ref(['中文', '日语', '英语']);
 
 // 定义左侧和右侧选中的值
 const leftSelect = ref(''); // 左侧选中的值
@@ -36,36 +21,19 @@ watch(rightSelect, (newValue:string) => {
   LangStore.setSecondLang(newValue);
   console.log('右侧选中的值:', newValue);
 });
-
-const settings = ref({
-  deepThinking: false,
-  webSearch: false
-})
 </script>
 
 <template>
   <div class="outer">
     <div class="input-group">
       <!-- 左侧下拉框 -->
-      <select v-model="leftSelect" class="select"
-              :class="[
-      'flex w-7 border-none rounded-none shadow-none items-center gap-1.5 px-2 h-full',
-      settings.webSearch
-      ? 'dark:!bg-primary bg-primary border-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
-      : 'text-muted-foreground'
-      ]">
+      <select v-model="leftSelect" class="select">
         <option disabled value="">请选择</option>
         <option v-for="option in leftOptions" :key="option" :value="option">{{ option }}</option>
       </select>
       <span> → </span>
       <!-- 右侧下拉框 -->
-      <select v-model="rightSelect" class="select"
-              :class="[
-      'flex w-7 border-none rounded-none shadow-none items-center gap-1.5 px-2 h-full',
-      settings.webSearch
-      ? 'dark:!bg-primary bg-primary border-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
-      : 'text-muted-foreground'
-      ]">
+      <select v-model="rightSelect" class="select">
         <option disabled value="">请选择</option>
         <option v-for="option in rightOptions" :key="option" :value="option">{{ option }}</option>
       </select>
@@ -94,13 +62,5 @@ const settings = ref({
   border-radius: 4px;
   font-size: 14px;
   width: 150px;
-  background-color: white; /* 默认背景色 */
-  color: black; /* 默认文字颜色 */
-}
-
-.dark .select {
-  background-color: #333; /* 黑夜模式背景色 */
-  color: white; /* 黑夜模式文字颜色 */
-  border-color: #555; /* 黑夜模式边框颜色 */
 }
 </style>
