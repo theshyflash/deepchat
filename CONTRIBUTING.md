@@ -1,6 +1,6 @@
-# Contributing to DeepChat
+# Contributing to 闪电翻译
 
-We love your input! We want to make contributing to DeepChat as easy and transparent as possible, whether it's:
+We love your input! We want to make contributing to 闪电翻译 as easy and transparent as possible, whether it's:
 
 - Reporting a bug
 - Discussing the current state of the code
@@ -40,8 +40,8 @@ We use GitHub to host code, to track issues and feature requests, as well as acc
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/deepchat.git
-   cd deepchat
+   git clone https://github.com/yourusername/闪电翻译.git
+   cd 闪电翻译
    ```
 
 2. Install required development tools:

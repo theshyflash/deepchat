@@ -13,7 +13,7 @@ export default async function notarizing(context) {
   }
   console.info('start notarize mac app', appOutDir)
   return await notarize({
-    appPath: `${appOutDir}/DeepChat.app`,
-    keychainProfile: 'DeepChat' // replace with your keychain
+    appPath: `${appOutDir}/闪电翻译.app`,
+    keychainProfile: '闪电翻译' // replace with your keychain
   })
 }

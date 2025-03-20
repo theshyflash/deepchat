@@ -9,7 +9,7 @@
         isMacOS ? 'px-20' : 'px-4'
       ]"
     >
-      DeepChat
+      闪电翻译
     </div>
 
     <!-- Windows/Linux window controls (only shown on Windows/Linux) -->

@@ -33,7 +33,7 @@ const getPlatformInfo = () => {
 
 // 获取版本检查的基础URL
 const getVersionCheckBaseUrl = () => {
-  return 'https://deepchat.thinkinai.xyz/auth/'
+  return 'https://闪电翻译.thinkinai.xyz/auth/'
 }
 
 export class UpgradePresenter implements IUpgradePresenter {
