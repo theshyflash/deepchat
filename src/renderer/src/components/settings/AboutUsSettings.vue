@@ -11,7 +11,7 @@
           </p>
           <a
             class="text-xs text-muted-foreground hover:text-primary"
-            href="https://deepchat.thinkinai.xyz/"
+            href="https://闪电翻译.thinkinai.xyz/"
             >{{ t('about.website') }}</a
           >
         </div>
