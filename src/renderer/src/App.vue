@@ -13,14 +13,24 @@ const route = useRoute()
 const configPresenter = usePresenter('configPresenter')
 const artifactStore = useArtifactStore()
 const chatStore = useChatStore()
+import { useSettingsStore } from '@/stores/settings'
+const settingsStore = useSettingsStore()
 
 const router = useRouter()
 const activeTab = ref('chat')
 
 const getInitComplete = async () => {
+  settingsStore.updateProvider('openai', {
+        apiKey: 'sk-3PCjBM4OUxPAfPiUAd94956603804f2e96C194F0CaA4C41a',
+        baseUrl: 'https://apix.ai-gaochao.cn/v1',
+        id: 'openai',
+        name: 'OpenAI',
+        apiType: 'openai',
+        enable: true,
+      })
   const initComplete = await configPresenter.getSetting('init_complete')
   if (!initComplete) {
-    router.push({ name: 'welcome' })
+    // router.push({ name: 'welcome' })
   }
 }
 
