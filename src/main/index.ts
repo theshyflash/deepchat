@@ -22,7 +22,7 @@ if (process.platform === 'darwin') {
 
 app.whenReady().then(() => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId('com.wefonk.deepchat')
+  electronApp.setAppUserModelId('com.wefonk.闪电翻译')
 
   // 从配置中读取代理设置并初始化
   const proxyMode = presenter.configPresenter.getProxyMode() as ProxyMode

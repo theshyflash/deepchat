@@ -1,6 +1,6 @@
-# DeepChat 贡献指南
+# 闪电翻译 贡献指南
 
-我们非常欢迎您的贡献！我们希望让参与 DeepChat 项目变得简单透明。您可以通过以下方式参与：
+我们非常欢迎您的贡献！我们希望让参与 闪电翻译 项目变得简单透明。您可以通过以下方式参与：
 
 - 报告 Bug
 - 讨论当前代码状态
@@ -40,8 +40,8 @@
 1. 克隆仓库：
 
    ```bash
-   git clone https://github.com/yourusername/deepchat.git
-   cd deepchat
+   git clone https://github.com/yourusername/闪电翻译.git
+   cd 闪电翻译
    ```
 
 2. 安装必要的开发工具:

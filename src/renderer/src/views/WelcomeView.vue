@@ -232,10 +232,12 @@ const isFirstStep = computed(() => currentStep.value === 0)
             <div class="space-y-6 max-w-xs mx-auto">
               <div class="flex flex-col gap-2">
                 <Label for="provider-select">{{ $t('welcome.provider.select') }}</Label>
+
                 <Select v-model="selectedProvider">
                   <SelectTrigger class="w-full">
                     <SelectValue placeholder="Select a provider" />
                   </SelectTrigger>
+                  <!-- 选择大模型的下拉框 -->
                   <SelectContent>
                     <SelectItem
                       v-for="provider in settingsStore.providers"
@@ -243,6 +245,7 @@ const isFirstStep = computed(() => currentStep.value === 0)
                       :value="provider.id"
                     >
                       <div class="flex items-center space-x-2">
+                        <!-- Icon -->
                         <ModelIcon
                           :model-id="provider.id"
                           :custom-class="'w-4 h-4 text-muted-foreground'"

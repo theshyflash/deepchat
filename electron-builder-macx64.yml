@@ -1,4 +1,4 @@
-appId: com.wefonk.deepchat
+appId: com.wefonk.DeepChat
 productName: DeepChat
 directories:
   buildResources: build
@@ -40,6 +40,6 @@ dmg:
 npmRebuild: true
 publish:
   provider: generic
-  url: https://deepchat.thinkinai.xyz/auth/
+  url: https://闪电翻译.thinkinai.xyz/auth/
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/

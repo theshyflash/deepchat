@@ -18,6 +18,7 @@ const router = useRouter()
 const activeTab = ref('chat')
 
 const getInitComplete = async () => {
+
   const initComplete = await configPresenter.getSetting('init_complete')
   if (!initComplete) {
     router.push({ name: 'welcome' })

@@ -21,7 +21,7 @@ export class TrayPresenter {
     console.log('iconPath', iconPath)
 
     this.tray = new Tray(iconPath)
-    this.tray.setToolTip('DeepChat')
+    this.tray.setToolTip('闪电翻译')
 
     const contextMenu = Menu.buildFromTemplate([
       {

@@ -2,9 +2,9 @@
 <img src='./build/icon.png' width="150" height="150" alt="logo" />
 </p>
 
-<h1 align="center">DeepChat</h1>
+<h1 align="center">闪电翻译</h1>
 
-<p align="center">海豚是鲸鱼的好朋友，DeepChat是你的好助手</p>
+<p align="center">海豚是鲸鱼的好朋友，闪电翻译是你的好助手</p>
 
 <div align="center">
   中文 / <a href="./README.md">English</a>
@@ -172,7 +172,7 @@ $ npm run build:linux:arm64
 
 ## Star
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ThinkInAIXYZ/deepchat&type=Date)](https://star-history.com/#ThinkInAIXYZ/deepchat&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=ThinkInAIXYZ/闪电翻译&type=Date)](https://star-history.com/#ThinkInAIXYZ/闪电翻译&Date)
 
 # 📃 许可证
 

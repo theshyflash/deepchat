@@ -36,6 +36,7 @@ export class SQLitePresenter implements ISQLitePresenter {
 
   constructor(dbPath: string, password?: string) {
     this.dbPath = dbPath
+    console.log("数据库的文件路径"+dbPath)
     try {
       // 确保数据库目录存在
       const dbDir = path.dirname(dbPath)
