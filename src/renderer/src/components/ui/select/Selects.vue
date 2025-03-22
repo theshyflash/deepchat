@@ -45,25 +45,13 @@ const settings = ref({
   <div class="outer">
     <div class="input-group">
       <!-- 左侧下拉框 -->
-      <select v-model="leftSelect" class="select"
-              :class="[
-      'flex border-none rounded-none shadow-none items-center gap-1.5 px-2 h-full',
-      settings.webSearch
-      ? 'dark:!bg-primary bg-primary border-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
-      : 'text-muted-foreground'
-      ]">
+      <select v-model="leftSelect" class="select">
         <option disabled value="">请选择</option>
         <option v-for="option in leftOptions" :key="option" :value="option">{{ option }}</option>
       </select>
       <span> → </span>
       <!-- 右侧下拉框 -->
-      <select v-model="rightSelect" class="select"
-              :class="[
-      'flex border-none rounded-none shadow-none items-center gap-1.5 px-2 h-full',
-      settings.webSearch
-      ? 'dark:!bg-primary bg-primary border-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
-      : 'text-muted-foreground'
-      ]">
+      <select v-model="rightSelect" class="select">
         <option disabled value="">请选择</option>
         <option v-for="option in rightOptions" :key="option" :value="option">{{ option }}</option>
       </select>
@@ -94,11 +82,25 @@ const settings = ref({
   width: 150px; /* 设置正常宽度 */
   background-color: white; /* 默认背景色 */
   color: black; /* 默认文字颜色 */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 聚焦时的样式 */
+.select:focus {
+  border-color: #007bff; /* 边框颜色变为蓝色 */
+  outline: none; /* 移除默认的 outline */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* 添加蓝色阴影 */
 }
 
 .dark .select {
   background-color: #333; /* 黑夜模式背景色 */
   color: white; /* 黑夜模式文字颜色 */
   border-color: #555; /* 黑夜模式边框颜色 */
+}
+
+/* 黑夜模式下的聚焦样式 */
+.dark .select:focus {
+  border-color: #007bff; /* 边框颜色变为蓝色 */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* 添加蓝色阴影 */
 }
 </style>
