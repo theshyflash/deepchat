@@ -14,6 +14,7 @@
           :model-id="provider.id"
           :custom-class="'w-4 h-4 text-muted-foreground'"
         ></ModelIcon>
+        <!-- 写死openai -->
         <span class="text-sm font-medium flex-1">{{ provider.name }}</span>
         <Switch :checked="provider.enable" @click.stop="toggleProviderStatus(provider)" />
       </div>
