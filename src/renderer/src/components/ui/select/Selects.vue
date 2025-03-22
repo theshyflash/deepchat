@@ -12,14 +12,12 @@ const leftOptions = ref([
   '意大利语', // 意大利语
   '西班牙语', // 西班牙语
   '德语', // 德语
-  '葡萄牙语', // 葡萄牙语mm
+  '葡萄牙语', // 葡萄牙语
   '俄语', // 俄语
   '阿拉伯语', // 阿拉伯语
-
 ]);
 
 const rightOptions = ref(leftOptions.value); // 右侧选项与左侧一致
-
 
 // 定义左侧和右侧选中的值
 const leftSelect = ref(''); // 左侧选中的值
@@ -49,7 +47,7 @@ const settings = ref({
       <!-- 左侧下拉框 -->
       <select v-model="leftSelect" class="select"
               :class="[
-      'flex w-7 border-none rounded-none shadow-none items-center gap-1.5 px-2 h-full',
+      'flex border-none rounded-none shadow-none items-center gap-1.5 px-2 h-full',
       settings.webSearch
       ? 'dark:!bg-primary bg-primary border-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
       : 'text-muted-foreground'
@@ -61,7 +59,7 @@ const settings = ref({
       <!-- 右侧下拉框 -->
       <select v-model="rightSelect" class="select"
               :class="[
-      'flex w-7 border-none rounded-none shadow-none items-center gap-1.5 px-2 h-full',
+      'flex border-none rounded-none shadow-none items-center gap-1.5 px-2 h-full',
       settings.webSearch
       ? 'dark:!bg-primary bg-primary border-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
       : 'text-muted-foreground'
@@ -87,13 +85,13 @@ const settings = ref({
   align-items: center;
   gap: 10px;
 }
-git
+
 .select {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
-  width: 150px;
+  width: 150px; /* 设置正常宽度 */
   background-color: white; /* 默认背景色 */
   color: black; /* 默认文字颜色 */
 }
