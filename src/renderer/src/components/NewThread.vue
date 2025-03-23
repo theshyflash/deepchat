@@ -256,7 +256,16 @@ const handleModelUpdate = (model: MODEL_META, providerId: string) => {
   modelSelectOpen.value = false
 }
 
-const translator_prompt_template = `你是一名翻译专家。如果输入的是{{lang1}}，你就翻译成{{lang2}}。如果输入不是{{lang1}}，你就翻译成{{lang1}}`
+const translator_prompt_template = `请按照以下步骤处理我的输入内容：
+1.语言检测阶段
+  - 自动识别输入文本的语种
+  - 支持检测包括但不仅限于中/英/日/韩/法/德/西/俄等主要语言
+2.翻译决策流程
+  - 当检测到{{lang1}}时，执行中译{{lang2}}翻译
+  - 当检测到其他语种时，统一翻译成{{lang1}}
+  - 保留专业术语的正确性
+  - 维持原文的格式
+3.只输出翻译结果，不要带其他内容`
 
 const handleSend = async (content: UserMessageContent) => {
   let lang1= await configPresenter.getLangFirst()
