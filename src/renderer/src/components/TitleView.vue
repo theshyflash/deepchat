@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <Selects/>
+  </div>
   <div class="flex items-center justify-between w-full p-2">
     <div class="flex flex-row gap-2 items-center">
       <Button
@@ -75,6 +78,8 @@ import { MODEL_META } from '@shared/presenter'
 import { ref, watch } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { useChatStore } from '@/stores/chat'
+import {Select} from "@/components/ui/select";
+import Selects from "@/components/ui/select/Selects.vue";
 
 const { t } = useI18n()
 const chatStore = useChatStore()

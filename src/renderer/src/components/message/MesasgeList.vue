@@ -1,4 +1,5 @@
 <template>
+
   <div class="w-full h-full relative min-h-0">
     <div
       ref="messagesContainer"
@@ -70,6 +71,7 @@ import { Button } from '@/components/ui/button'
 import { Icon } from '@iconify/vue'
 import { useChatStore } from '@/stores/chat'
 import { useI18n } from 'vue-i18n'
+import {Select} from "@/components/ui/select";
 
 const { t } = useI18n()
 const props = defineProps<{
