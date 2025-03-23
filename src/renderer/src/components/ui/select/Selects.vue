@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue';
 import { useLangStore } from '@/stores/Lang';
 const LangStore = useLangStore()
+
 // 定义左侧和右侧的选项
 const leftOptions = ref([
   '中文', // 中文
@@ -24,13 +25,13 @@ const leftSelect = ref(''); // 左侧选中的值
 const rightSelect = ref(''); // 右侧选中的值
 
 // 监听左侧选中的值
-watch(leftSelect, (newValue:string) => {
+watch(leftSelect, (newValue: string) => {
   LangStore.setFirstLang(newValue);
   console.log('左侧选中的值:', newValue);
 });
 
 // 监听右侧选中的值
-watch(rightSelect, (newValue:string) => {
+watch(rightSelect, (newValue: string) => {
   LangStore.setSecondLang(newValue);
   console.log('右侧选中的值:', newValue);
 });
@@ -56,16 +57,28 @@ const settings = ref({
         <option v-for="option in rightOptions" :key="option" :value="option">{{ option }}</option>
       </select>
     </div>
+
+    <!-- 提示对话框 -->
+    <transition name="fade">
+      <div v-if="!leftSelect || !rightSelect" class="dialog">
+        <div class="dialog-content">
+          <span class="dialog-icon">⚠️</span>
+          <span class="dialog-text">请选择要翻译的内容</span>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <style scoped>
 .outer {
   display: flex;
-  justify-content: flex-end; /* 内容靠右 */
+  flex-direction: column;
+  align-items: flex-end; /* 内容靠右 */
   padding: 10px;
   border-radius: 8px;
   width: 100%;
+  position: relative; /* 为对话框定位 */
 }
 
 .input-group {
@@ -102,5 +115,59 @@ const settings = ref({
 .dark .select:focus {
   border-color: #007bff; /* 边框颜色变为蓝色 */
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* 添加蓝色阴影 */
+}
+
+/* 对话框样式 */
+.dialog {
+  position: absolute;
+  top: 100%; /* 显示在下拉框下方 */
+  right: 0;
+  margin-top: 10px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dialog-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dialog-icon {
+  font-size: 16px;
+  color: #ff9800; /* 警告图标颜色 */
+}
+
+.dialog-text {
+  font-size: 14px;
+  color: #333;
+}
+
+/* 黑夜模式下的对话框样式 */
+.dark .dialog {
+  background-color: #333;
+  border-color: #555;
+}
+
+.dark .dialog-text {
+  color: #fff;
+}
+
+/* 淡入淡出动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>

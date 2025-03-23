@@ -454,32 +454,55 @@ const handleSearchMouseLeave = () => {
 import { useLangStore } from '@/stores/Lang';
 const LangStore = useLangStore()
 onMounted(() => {
+  // 初始化设置
   initSettings()
-  // 用户不使用双C复制 也能将要选择的翻译内容填入
+
+  // 初始化语言配置
+  updateLangConfig()
+
+  // 监听变量变化事件
+  setupVariableChangeListener()
+
+  // 添加搜索引擎选择器的鼠标事件监听器
+  setupSearchEngineHoverListeners()
+})
+
+// 提取函数：更新语言配置
+function updateLangConfig() {
   configPresenter.setLangFirst(LangStore.FirstLang)
   configPresenter.setLangSecond(LangStore.SecondLang)
-  ipcRenderer?.on('variable-changed',  (_, msg) => {
-    console.log("variable-changed....:",msg)
-    // inputText.value = msg
-    inputText.value = msg
-    // 用户使用双C复制
-    configPresenter.setLangFirst(LangStore.FirstLang)
-    configPresenter.setLangSecond(LangStore.SecondLang)
-    configPresenter.getLangSecond().then(()=>{
-        console.log('msg:',LangStore.FirstLang)
-    })
-    configPresenter.getLangSecond().then(()=>{
-        console.log('msg:',LangStore.SecondLang)
-    })
-  })
+  // LangStore.deleteLang()
+}
 
-  // Add event listeners for search engine selector hover
+// 提取函数：监听变量变化事件
+function setupVariableChangeListener() {
+  ipcRenderer?.on('variable-changed', (_, msg) => {
+    console.log("variable-changed....:", msg)
+    inputText.value = msg
+
+    // 打印当前语言配置
+    logCurrentLangConfig()
+  })
+}
+
+// 提取函数：打印当前语言配置
+function logCurrentLangConfig() {
+  configPresenter.getLangFirst().then((lang) => {
+    console.log('FirstLang:', lang)
+  })
+  configPresenter.getLangSecond().then((lang) => {
+    console.log('SecondLang:', lang)
+  })
+}
+
+// 提取函数：设置搜索引擎选择器的鼠标事件监听器
+function setupSearchEngineHoverListeners() {
   const searchElement = document.querySelector('.search-engine-select')
   if (searchElement) {
     searchElement.addEventListener('mouseenter', handleSearchMouseEnter)
     searchElement.addEventListener('mouseleave', handleSearchMouseLeave)
   }
-})
+}
 
 onUnmounted(() => {
   // Remove event listeners for search engine selector hover
