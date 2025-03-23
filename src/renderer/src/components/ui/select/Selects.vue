@@ -36,10 +36,6 @@ watch(rightSelect, (newValue: string) => {
   console.log('右侧选中的值:', newValue);
 });
 
-const settings = ref({
-  deepThinking: false,
-  webSearch: false
-})
 </script>
 
 <template>

@@ -202,19 +202,23 @@ import { MessageFile, UserMessageContent } from '@shared/chat'
 import { usePresenter } from '@/composables/usePresenter'
 import { approximateTokenSize } from 'tokenx'
 import { useSettingsStore } from '@/stores/settings'
-import { debounce } from 'lodash';
 const { t } = useI18n()
 const { ipcRenderer } = window.electron
 
 const configPresenter = usePresenter('configPresenter')
 const chatStore = useChatStore()
 const settingsStore = useSettingsStore()
-const inputText = ref('')
+import { useLangStore } from '@/stores/Lang';
+import { debounce } from 'lodash'; // 假设使用 lodash 的 debounce
+
+const LangStore = useLangStore();
+const inputText = ref(''); // 确保 inputText 是响应式的
 let lastInputTime = 0;
 let lastSentValue = '';
-const INPUT_DELAY = 1000;
+const INPUT_DELAY = 300; // 示例值，根据实际情况调整
 
 const debouncedEmitSend = debounce(() => {
+  console.log('debouncedEmitSend called'); // 调试日志
   const now = Date.now();
   if (now - lastInputTime < INPUT_DELAY) {
     return; // 输入未结束
@@ -229,13 +233,17 @@ const debouncedEmitSend = debounce(() => {
   emitSend();
 }, INPUT_DELAY);
 
-watch(
-  () => inputText.value,
-  () => {
-    lastInputTime = Date.now();
-    debouncedEmitSend();
-  }
-);
+if (LangStore.FirstLang && LangStore.SecondLang) {
+  watch(
+    () => inputText.value,
+    () => {
+      console.log('inputText changed:', inputText.value); // 调试日志
+      lastInputTime = Date.now();
+      debouncedEmitSend();
+    }
+  );
+}
+
 const fileInput = ref<HTMLInputElement>()
 const filePresenter = usePresenter('filePresenter')
 const windowPresenter = usePresenter('windowPresenter')
@@ -451,8 +459,7 @@ const handleSearchMouseEnter = () => {
 const handleSearchMouseLeave = () => {
   isSearchHovering.value = false
 }
-import { useLangStore } from '@/stores/Lang';
-const LangStore = useLangStore()
+
 onMounted(() => {
   // 初始化设置
   initSettings()
