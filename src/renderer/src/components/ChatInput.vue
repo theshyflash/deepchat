@@ -184,7 +184,7 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import {computed, onMounted, onUnmounted, ref, watch} from 'vue'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -202,7 +202,7 @@ import { MessageFile, UserMessageContent } from '@shared/chat'
 import { usePresenter } from '@/composables/usePresenter'
 import { approximateTokenSize } from 'tokenx'
 import { useSettingsStore } from '@/stores/settings'
-
+import { debounce } from 'lodash';
 const { t } = useI18n()
 const { ipcRenderer } = window.electron
 
@@ -210,6 +210,32 @@ const configPresenter = usePresenter('configPresenter')
 const chatStore = useChatStore()
 const settingsStore = useSettingsStore()
 const inputText = ref('')
+let lastInputTime = 0;
+let lastSentValue = '';
+const INPUT_DELAY = 1000;
+
+const debouncedEmitSend = debounce(() => {
+  const now = Date.now();
+  if (now - lastInputTime < INPUT_DELAY) {
+    return; // 输入未结束
+  }
+  if (inputText.value === lastSentValue) {
+    return; // 内容未变化
+  }
+  if (inputText.value.trim() === '') {
+    return; // 输入为空
+  }
+  lastSentValue = inputText.value;
+  emitSend();
+}, INPUT_DELAY);
+
+watch(
+  () => inputText.value,
+  () => {
+    lastInputTime = Date.now();
+    debouncedEmitSend();
+  }
+);
 const fileInput = ref<HTMLInputElement>()
 const filePresenter = usePresenter('filePresenter')
 const windowPresenter = usePresenter('windowPresenter')
@@ -289,7 +315,6 @@ const emitSend = () => {
       search: settings.value.webSearch,
       think: settings.value.deepThinking
     }
-
     emit('send', messageContent)
     inputText.value = ''
   }
@@ -430,11 +455,14 @@ import { useLangStore } from '@/stores/Lang';
 const LangStore = useLangStore()
 onMounted(() => {
   initSettings()
-
+  // 用户不使用双C复制 也能将要选择的翻译内容填入
+  configPresenter.setLangFirst(LangStore.FirstLang)
+  configPresenter.setLangSecond(LangStore.SecondLang)
   ipcRenderer?.on('variable-changed',  (_, msg) => {
     console.log("variable-changed....:",msg)
     // inputText.value = msg
     inputText.value = msg
+    // 用户使用双C复制
     configPresenter.setLangFirst(LangStore.FirstLang)
     configPresenter.setLangSecond(LangStore.SecondLang)
     configPresenter.getLangSecond().then(()=>{

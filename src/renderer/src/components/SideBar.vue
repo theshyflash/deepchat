@@ -18,8 +18,8 @@
       </Button>
 
       <!-- Settings Section -->
-
-      <Button
+      <!-- 设置按钮 -->
+      <!-- <Button
         variant="ghost"
         size="icon"
         class="rounded-lg w-9 h-9"
@@ -34,7 +34,7 @@
           ]"
         />
         <span class="sr-only">Settings</span>
-      </Button>
+      </Button> -->
       <!-- Debug Section -->
       <!-- <Button
         variant="ghost"
