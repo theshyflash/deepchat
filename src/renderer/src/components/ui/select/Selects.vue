@@ -116,12 +116,11 @@ watch(rightSelect, (newValue: string) => {
 /* 对话框样式 */
 .dialog {
   position: absolute;
-  top: 100%; /* 显示在下拉框下方 */
-  right: 0;
-  margin-top: 10px;
   background-color: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
+  bottom: 5px;
+  left: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 12px;
   display: flex;
