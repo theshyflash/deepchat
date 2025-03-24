@@ -205,7 +205,8 @@ import { useSettingsStore } from '@/stores/settings'
 import { debounce } from 'lodash';
 const { t } = useI18n()
 const { ipcRenderer } = window.electron
-
+import { useLangStore } from '@/stores/Lang';
+const LangStore = useLangStore()
 const configPresenter = usePresenter('configPresenter')
 const chatStore = useChatStore()
 const settingsStore = useSettingsStore()
@@ -227,15 +228,22 @@ const debouncedEmitSend = debounce(() => {
   }
   lastSentValue = inputText.value;
   emitSend();
+
 }, INPUT_DELAY);
 
-watch(
-  () => inputText.value,
-  () => {
-    lastInputTime = Date.now();
-    debouncedEmitSend();
-  }
-);
+if(LangStore.FirstLang && LangStore.SecondLang){
+  setInterval(() =>{
+    watch(
+      () => inputText.value,
+      () => {
+        lastInputTime = Date.now();
+        debouncedEmitSend();
+
+      }
+    );
+  },2000)
+}
+
 const fileInput = ref<HTMLInputElement>()
 const filePresenter = usePresenter('filePresenter')
 const windowPresenter = usePresenter('windowPresenter')
@@ -451,8 +459,7 @@ const handleSearchMouseEnter = () => {
 const handleSearchMouseLeave = () => {
   isSearchHovering.value = false
 }
-import { useLangStore } from '@/stores/Lang';
-const LangStore = useLangStore()
+
 onMounted(() => {
   initSettings()
   // 用户不使用双C复制 也能将要选择的翻译内容填入
