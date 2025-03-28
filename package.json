@@ -1,5 +1,5 @@
 {
-  "name": "闪电翻译",
+  "name": "shandian-fanyi",
   "version": "0.0.7",
   "description": "闪电翻译，一个简单易用的AI客户端",
   "main": "./out/main/index.js",

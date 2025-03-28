@@ -465,12 +465,9 @@ onMounted(() => {
     // 用户使用双C复制
     configPresenter.setLangFirst(LangStore.FirstLang)
     configPresenter.setLangSecond(LangStore.SecondLang)
-    configPresenter.getLangSecond().then(()=>{
-        console.log('msg:',LangStore.FirstLang)
-    })
-    configPresenter.getLangSecond().then(()=>{
-        console.log('msg:',LangStore.SecondLang)
-    })
+    // configPresenter.getLangSecond().then(()=>{
+    //     console.log('msg:',LangStore.SecondLang)
+    // })
   })
 
   // Add event listeners for search engine selector hover

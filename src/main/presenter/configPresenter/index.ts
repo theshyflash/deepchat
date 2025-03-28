@@ -193,7 +193,7 @@ export class ConfigPresenter implements IConfigPresenter {
   }
 
   getLangFirst(): string{
-    return this.getSetting(LANGFirst_KEY)
+    return String(this.getSetting(LANGFirst_KEY))
   }
 
   setLangFirst(value: string): void{
@@ -201,7 +201,7 @@ export class ConfigPresenter implements IConfigPresenter {
   }
 
   getLangSecond(): string{
-    return this.getSetting(LANGSecond_KEY)
+    return String(this.getSetting(LANGSecond_KEY))
   }
 
   setLangSecond(value: string): void{
